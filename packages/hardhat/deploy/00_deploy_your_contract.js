@@ -17,16 +17,57 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
   const { deployer } = await getNamedAccounts();
   const chainId = await getChainId();
 
-  await deploy("YourContract", {
+  const coordinates = [
+    "8",
+    "2",
+    "0",
+    "4",
+    "1",
+    "5",
+    "7",
+    "8",
+    "5",
+    "6",
+    "5",
+    "8",
+    "0",
+    "7",
+    "0",
+    "5",
+    "4",
+    "4",
+    "1",
+    "7",
+  ];
+  // [...Array(20).keys()].map(() =>
+  //   Math.floor(Math.random() * 9).toString()
+  // );
+  console.log(
+    "🚀 ~ file: 00_deploy_your_contract.js ~ line 23 ~ module.exports= ~ coordinates",
+    coordinates
+  );
+  const tx = await deploy("Game", {
     // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
     from: deployer,
-    // args: [ "Hello", ethers.utils.parseEther("1.5") ],
+    args: [coordinates],
+    log: true,
+    waitConfirmations: 5,
+  });
+
+  // await tx.wait();
+
+  const firstGame = await ethers.getContract("Game", deployer);
+
+  await deploy("GameFactory", {
+    // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
+    from: deployer,
+    args: [firstGame.address, coordinates],
     log: true,
     waitConfirmations: 5,
   });
 
   // Getting a previously deployed contract
-  const YourContract = await ethers.getContract("YourContract", deployer);
+  // const YourContract = await ethers.getContract("YourContract", deployer);
   /*  await YourContract.setPurpose("Hello");
   
     To take ownership of yourContract using the ownable library uncomment next line and add the 
@@ -76,4 +117,4 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
   //   console.error(error);
   // }
 };
-module.exports.tags = ["YourContract"];
+module.exports.tags = ["GameFactory"];
