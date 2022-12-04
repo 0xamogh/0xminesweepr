@@ -32,54 +32,7 @@ export default function Home({ yourLocalBalance, readContracts }) {
       icon: HomeIcon,
       background: 'bg-pink-500',
     },
-    {
-      title: 'Smart Contracts',
-      description: (
-        <>Edit your smart contract in <code className='text-xs rounded-sm bg-blue-100 text-blue-500 p-1'>packages/hardhat/contracts/YourContract.sol</code></>
-      ),
-      icon: ChipIcon,
-      background: 'bg-green-500',
-    },
-    purpose ?
-    {
-      title: 'Purpose Variable',
-      description: (
-        <>The purpose variable from your contract is <code className='text-xs rounded-sm bg-blue-100 text-blue-500 p-1'>{purpose}</code></>
-      ),
-      icon: LightningBoltIcon,
-      background: 'bg-yellow-500',
-    }
-    :
-    {
-      title: 'Deploy Your Contract',
-      description: (
-        <>Run <code className='text-xs rounded-sm bg-blue-100 text-blue-500 p-1'>yarn chain</code> and <code className='text-xs rounded-sm bg-blue-100 text-blue-500 p-1'>yarn deploy</code> to deploy your first contract</>
-      ),
-      icon: LightningBoltIcon,
-      background: 'bg-yellow-500',
-    },
-    {
-      title: 'Balance',
-      description: (
-        <>An example prop of your balance is passed into the Home view: <code className='text-xs rounded-sm bg-blue-100 text-blue-500 p-1'>{ethers.utils.formatEther(yourLocalBalance)}</code></>
-      ),
-      icon: CurrencyDollarIcon,
-      background: 'bg-blue-500',
-    },
-    {
-      title: 'Hints',
-      description: 'Check out the Hints tab for more tips',
-      href: '/hints',
-      icon: SparklesIcon,
-      background: 'bg-indigo-500',
-    },
-    {
-      title: 'Debug Contracts',
-      description: 'Tinker with your smart contract using the Debug Contract UI',
-      href: '/debug',
-      icon: CodeIcon,
-      background: 'bg-purple-500',
-    },
+ 
   ]
 
   return (

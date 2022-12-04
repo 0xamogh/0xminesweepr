@@ -52,7 +52,7 @@ contract Game is Ownable {
     // uint256[] private randomNumbers;
 
     constructor(uint256[] memory coordinates){
-        generateCoordinates(coordinates, NUM_MINES);
+        // generateCoordinates(coordinates, NUM_MINES);
         initializeGame();
     }
 
@@ -68,8 +68,9 @@ contract Game is Ownable {
         }
         
         for(uint256 i = 0; i < NUM_MINES;i++){
-            console.log("this works",mines[i].x,mines[i].y);
-            realBoard[mines[i].x][mines[i].y] = CoordinateStatus.Mine; 
+            uint256 x = uint256(keccak256(abi.encodePacked(block.timestamp, i))) % BOARDLENGTH;
+            uint256 y = uint256(keccak256(abi.encodePacked(block.timestamp, i, x))) % BOARDLENGTH;
+            realBoard[x][y] = CoordinateStatus.Mine; 
         }
         console.log("reaches here");
         intializeBoards();
@@ -198,14 +199,13 @@ contract Game is Ownable {
         return address(this);
     }
 
-    function generateCoordinates(uint256[] memory randomWords, uint256 numCoords) internal {
-        require(randomWords.length >= numCoords*2,"GameFactory : Too few random numbers generated");
-        for(uint256 i = 0; i < numCoords; i++){
-            Coordinates storage coords = mines[i];
-            coords.x = randomWords[i];
-            coords.y = randomWords[i+1];
-        }
-        console.log("loop complete");
-    }
+    // function generateCoordinates(uint256[] memory randomWords, uint256 numCoords) internal {
+    //     require(randomWords.length >= numCoords*2,"GameFactory : Too few random numbers generated");
+    //     for(uint256 i = 0; i < numCoords; i++){
+    //         Coordinates storage coords = mines[i];
+    //         coords.x = randomWords[i];
+    //         coords.y = randomWords[i+1];
+    //     }
+    // }
 
 }

@@ -41,6 +41,8 @@ import {
   CurrencyDollarIcon,
   ShareIcon,
 } from '@heroicons/react/outline';
+import FunctionForm from "./components/Contract/FunctionForm";
+import DataLoader from "./minesweeper_components/DataLoader";
 
 const { ethers } = require("ethers");
 /*
@@ -444,7 +446,7 @@ function App(props) {
                           and give you a form to interact with it locally
                       */}
 
-                    <Contract
+                    <DataLoader
                       name="Game"
                       price={price}
                       signer={userSigner}
